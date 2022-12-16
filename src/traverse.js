@@ -36,6 +36,11 @@ export const Traverse=()=>
                             {
                                 mylist.map((each)=>(
                                     <tr>
+                                        <td>
+                                            <a href={`/modify/${each.regno}`}>
+                                                <i class="bi bi-pencil-fill"></i>{each.regno}
+                                            </a>
+                                        </td>
                                         <td>{each.regno}</td>
                                         <td>{each.model}</td>
                                         <td>{each.brand}</td>
