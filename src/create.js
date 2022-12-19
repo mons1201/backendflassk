@@ -10,7 +10,7 @@ export const Create=()=>
             "regno":"",
             "model":"",
             "brand":"",
-            "cc":0,
+            "cc":0.0,
             "price":0,
             "year":0
 
@@ -38,6 +38,19 @@ export const Create=()=>
     const pushing=async()=>{
         const t = await onCreate(bike)
         alert(JSON.stringify(t.data))
+    }
+
+    const cancel=()=>{
+        setBike(()=>{
+            return{
+                "regno":"",
+                "model":"",
+                "brand":"",
+                "year":0,
+                "cc":0.0,
+                "price":0
+            }
+        })
     }
     return(
         <>
@@ -72,15 +85,16 @@ export const Create=()=>
                     </div>
                     <div className="form group">
                         <label>Cost</label>
-                        <input type="text" name="price" onChange={gather} value={bike.price} placeholder="vehicle price" className="form-control" />
+                        <input type="text" name="price" onChange={gather} value={bike.price} placeholder="vehicle cost" className="form-control" />
                     </div>
                     <div className="mt-3 row justify-content-around">
                         <button className="col-2 btn btn-outline-success" onClick={pushing}>
                             <i class="bi bi-node-plus-fill"></i>
                         </button>
-                        <button className="col-2 btn btn-outline-dark" type="reset">
+                        {/* <button className="col-2 btn btn-outline-dark" type="reset"> */}
+                        <button className="col-2 btn btn-outline-dark" type="cancel">
                             <i class="bi bi-x-square-fill"></i>
-                            </button>
+                        </button>
                     </div>
             </div>
         </div>

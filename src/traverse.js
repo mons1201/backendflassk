@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { onTraverse } from "./join"
+import { onDelete, onTraverse } from "./join"
 
-export const Traverse=()=>
+// export const Traverse=()=>
+export const Traverse=(props)=>
 {
     const[mylist,setMylist]=useState([])
 
@@ -10,8 +11,16 @@ export const Traverse=()=>
         setMylist(hai.data)
     }
 
+    // useEffect(()=>{
+    //     loads()
+    // },[])
     useEffect(()=>{
-        loads()
+        if(props.myown){
+            setMylist(props.myown)
+        }
+        else{
+            loads()
+        }
     },[])
 
     return(
@@ -37,9 +46,21 @@ export const Traverse=()=>
                                 mylist.map((each)=>(
                                     <tr>
                                         <td>
-                                            <a href={`/modify/${each.regno}`}>
-                                                <i class="bi bi-pencil-fill"></i>{each.regno}
+                                            <a href="{`/modify/${each.regno}`} className=text-warning">
+                                                <span className="bi bi-pencil-fill"></span>
                                             </a>
+                                            {each.regno}
+                                            <button className="ms-2 btn btn-outline-danger" onClick={async()=>{
+                                                const tt = await onDelete(each.regno)
+                                                alert(tt.data)
+                                                window.location.assign("/")
+                                            }}>
+                                            <span class="bi bi-trash3-fill"></span>
+
+                                            </button>
+                                            {/* <a href={`/modify/${each.regno}`}>
+                                                <i class="bi bi-pencil-fill"></i>{each.regno}
+                                            </a> */}
                                         </td>
                                         <td>{each.regno}</td>
                                         <td>{each.model}</td>
